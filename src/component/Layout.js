@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import getCookie from './GetCookie';
 
-
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
-
+//아래는 개발 환경 
+//const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+// nginx 프록시 활용하기에 아래처럼 작성.
+const API_URL = '/api';
 
 const logoutButtonStyle = {
   padding: "8px 15px",

@@ -7,9 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 import getCookie from './GetCookie';
 
-
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
-
+//아래는 개발 환경 
+//const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+// nginx 프록시 활용하기에 아래처럼 작성.
+const API_URL = '/api';
 
 const ProductDetailList = () => {
     const accessTokenCookie = getCookie('accessToken');

@@ -2,8 +2,10 @@ import {useState,useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../resources/css/member.css';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
-
+//아래는 개발 환경 
+//const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+// nginx 프록시 활용하기에 아래처럼 작성.
+const API_URL = '/api';
 
 const SearchPassword = () => {
 
