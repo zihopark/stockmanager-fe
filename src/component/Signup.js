@@ -75,29 +75,10 @@ const Signup = () => {
         formData.append("password", passwordRef.current.value);
         formData.append("telno",telnoRef.current.value);
         formData.append("kind", "I");
-		
-
-
-        const jsonData = {
-            email: emailRef.current.value,
-            username: usernameRef.current.value,
-            password: passwordRef.current.value,
-            telno: telnoRef.current.value
-        };
-
-        await fetch(`${API_URL}/member/signup`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(jsonData)
-          });
-          
-        /*
+        
 		await fetch(`${API_URL}/member/signup`, {
 			method: 'POST',
 			body: formData,
-			
 		}).then(async (response) => {
             if (!response.ok) {
                 const text = await response.text(); // 혹시 에러 메시지가 있나 로그
@@ -112,7 +93,7 @@ const Signup = () => {
 			  } else {
 				  alert("서버 장애로 회원 가입에 실패했습니다.");
 			  }
-		});	*/
+		});	
 
     }
 
