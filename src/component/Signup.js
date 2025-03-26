@@ -80,8 +80,14 @@ const Signup = () => {
 			method: 'POST',
 			body: formData,
 			
-		}).then((response) => response.json())
-		  .then((data) => {
+		}).then(async (response) => {
+            if (!response.ok) {
+                const text = await response.text(); // 혹시 에러 메시지가 있나 로그
+                console.error('회원가입 실패 응답:', text);
+                throw new Error(`HTTP ${response.status}`);
+            }
+            return response.json(); // 여기서 안전하게 파싱
+        }).then((data) => {
 			  if(data.status === 'good'){
 				  alert(decodeURIComponent(data.username) + "님, 회원 가입을 축하 드립니다.");				  
                   navigate('/Login');
