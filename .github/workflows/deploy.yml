@@ -23,11 +23,11 @@ jobs:
       
       # 3. 프론트엔드 Docker 이미지 빌드
       - name: 이미지 빌드
-        run: docker build -t ${{ secrets.DOCKER_USER_NAME }}/${{ secrets.DOCKER_IMAGE_NAME }}-fe:test .
+        run: docker build -t ${{ secrets.DOCKER_USER_NAME }}/${{ secrets.DOCKER_IMAGE_NAME }}-fe .
       
       # 4. 도커허브에 푸시
       - name: 도커허브에 이미지 푸시
-        run: docker push ${{ secrets.DOCKER_USER_NAME }}/${{ secrets.DOCKER_IMAGE_NAME }}-fe:test
+        run: docker push ${{ secrets.DOCKER_USER_NAME }}/${{ secrets.DOCKER_IMAGE_NAME }}-fe
       
       # 5. AWS EC2에 ssh 접속 후 배포
       - name: AWS EC2에 ssh 접속 후 배포
@@ -41,7 +41,7 @@ jobs:
             echo "AWS 연결 중..."
             
             # 6. AWS EC2에서 최신 이미지 pull
-            docker pull ${{ secrets.DOCKER_USER_NAME }}/${{ secrets.DOCKER_IMAGE_NAME }}-fe:test
+            docker pull ${{ secrets.DOCKER_USER_NAME }}/${{ secrets.DOCKER_IMAGE_NAME }}-fe
 
             # 7. 컨테이너 서비스 재시작
             docker-compose down
