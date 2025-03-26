@@ -69,9 +69,6 @@ const Login = () =>{
 
 			await fetch(`${API_URL}/member/loginCheck`,{
 				method : 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
 				body : formData
 			}).then((response) => response.json())
 			  .then((data) => {
