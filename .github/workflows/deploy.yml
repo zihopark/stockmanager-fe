@@ -12,11 +12,11 @@ jobs:
     steps:
       # 1. 레포지토리 코드 가져오기
       - name: 체크아웃
-        uses: actions/checkout@e33c7c86b6e46cd5793d47d47af9295cd49f582e
+        uses: actions/checkout@v4.1.1
         
       # 2. 도커허브에 로그인
       - name: 도커허브에 로그인
-        uses: docker/login-action@2c4e14e5c7a00b3be4b5d700e3f33b7157f7e78b #1.16.0
+        uses: docker/login-action@v1.16.0
         with:
           username: ${{ secrets.DOCKER_USER_NAME }}
           password: ${{ secrets.DOCKER_USER_PW }}
@@ -31,7 +31,7 @@ jobs:
       
       # 5. AWS EC2에 ssh 접속 후 배포
       - name: AWS EC2에 ssh 접속 후 배포
-        uses: appleboy/ssh-action@e94f1d05572e70368e5f0c34a2b87781be1cd1b0 #v0.1.10
+        uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.AWS_IP }}
           port: 22
