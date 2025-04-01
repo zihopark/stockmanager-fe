@@ -12,11 +12,11 @@ jobs:
     steps:
       # 1. 레포지토리 코드 가져오기
       - name: 체크아웃
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd719f8aa17353c6a7fffb9deac18bc76a4dbd #최신 버전 4.2.2 
         
       # 2. 도커허브에 로그인
       - name: 도커허브에 로그인
-        uses: docker/login-action@v1
+        uses: docker/login-action@2c4e14e5c7a00b3be4b5d700e3f33b7157f7e78b #1.16.0
         with:
           username: ${{ secrets.DOCKER_USER_NAME }}
           password: ${{ secrets.DOCKER_USER_PW }}
@@ -31,7 +31,7 @@ jobs:
       
       # 5. AWS EC2에 ssh 접속 후 배포
       - name: AWS EC2에 ssh 접속 후 배포
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@e94f1d05572e70368e5f0c34a2b87781be1cd1b0 #v0.1.10
         with:
           host: ${{ secrets.AWS_IP }}
           port: 22
@@ -41,10 +41,12 @@ jobs:
             echo "AWS 연결 중..."
             
             # 6. AWS EC2에서 최신 이미지 pull
-            docker pull ${{ secrets.DOCKER_USER_NAME }}/${{ secrets.DOCKER_IMAGE_NAME }}-fe
+            docker pull ${{ secrets.DOCKER_USER_NAME }}/stock-fe:latest
+
 
             # 7. 컨테이너 서비스 재시작
-            docker-compose down
-            docker-compose up -d
+            docker compose down --volumes --remove-orphans
+            docker compose build --no-cache
+            docker compose up -d
             
             echo "배포 완료"
