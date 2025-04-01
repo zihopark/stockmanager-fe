@@ -12,7 +12,7 @@ jobs:
     steps:
       # 1. 레포지토리 코드 가져오기
       - name: 체크아웃
-        uses: actions/checkout@11bd719f8aa17353c6a7fffb9deac18bc76a4dbd #최신 버전 4.2.2 
+        uses: actions/checkout@e33c7c86b6e46cd5793d47d47af9295cd49f582e
         
       # 2. 도커허브에 로그인
       - name: 도커허브에 로그인
